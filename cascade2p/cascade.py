@@ -40,7 +40,6 @@ from . import config, utils
 def train_model(
     model_name, model_folder="Pretrained_models", ground_truth_folder="Ground_truth"
 ):
-
     """Train neural network with parameters specified in the config.yaml file in the model folder
 
     In this function, a model is configured (defined in the input 'model_name': frame rate, noise levels, ground truth datasets, etc.).
@@ -139,7 +138,7 @@ def train_model(
 
     nr_model_fits = len(cfg["noise_levels"]) * cfg["ensemble_size"]
     print("Fitting a total of {} models:".format(nr_model_fits))
-  
+
     curr_model_nr = 0
 
     print(training_folders[0])
@@ -156,8 +155,9 @@ def train_model(
             )
 
             if cfg["sampling_rate"] > 30:
-
-                windowsize_suggestion = int(np.power(cfg["sampling_rate"] / 30, 0.25) * 64)
+                windowsize_suggestion = int(
+                    np.power(cfg["sampling_rate"] / 30, 0.25) * 64
+                )
 
                 print(
                     "Window size should be enlarged to "
@@ -222,13 +222,12 @@ def train_model(
     print("Runtime: {:.0f} min".format((time.time() - start) / 60))
 
 
-
-
-
 def transfer_train_model(
-    model_name,template_model, model_folder="Pretrained_models", ground_truth_folder="Ground_truth"
+    model_name,
+    template_model,
+    model_folder="Pretrained_models",
+    ground_truth_folder="Ground_truth",
 ):
-
     """Train neural network with parameters specified in the config.yaml file in the model folder
 
     In this function, a model is configured (defined in the input 'model_name': frame rate, noise levels, ground truth datasets, etc.).
@@ -285,7 +284,7 @@ def transfer_train_model(
         )
         print(m)
         raise Exception(m)
-        
+
     # check if configuration file can be found
     if not os.path.isfile(cfg_file_template):
         m = (
@@ -305,10 +304,9 @@ def transfer_train_model(
     # load cfg dictionary from old config.yaml file (to be consistent)
     cfg_new = config.read_config(cfg_file)
     cfg = config.read_config(cfg_file_template)
-    cfg['training_datasets'] = cfg_new['training_datasets']
-    cfg['model_name'] = cfg_new['model_name']
+    cfg["training_datasets"] = cfg_new["training_datasets"]
+    cfg["model_name"] = cfg_new["model_name"]
     verbose = cfg["verbose"]
-
 
     if verbose:
         print(
@@ -348,11 +346,13 @@ def transfer_train_model(
         raise Exception(m)
 
     start = time.time()
-    
-    model_pretrained_dict = get_model_paths(model_template_path)  # function defined below
+
+    model_pretrained_dict = get_model_paths(
+        model_template_path
+    )  # function defined below
     if verbose > 2:
         print("Loaded models:", str(model_pretrained_dict))
-    
+
     # Update model fitting status
     cfg["training_finished"] = "Running"
     config.write_config(cfg, os.path.join(model_path, "config.yaml"))
@@ -364,13 +364,12 @@ def transfer_train_model(
 
     print(training_folders[0])
     from tensorflow.keras.models import load_model
-    
+
     for noise_level in cfg["noise_levels"]:
-      
         pretrained_models = list()
         for model_pathX in model_pretrained_dict[noise_level]:
             pretrained_models.append(load_model(model_pathX))
-      
+
         for ensemble in range(cfg["ensemble_size"]):
             # train 'ensemble_size' (e.g. 5) models for each noise level
 
@@ -382,8 +381,7 @@ def transfer_train_model(
             )
 
             if cfg["sampling_rate"] > 30:
-
-                #cfg["windowsize"] = int(np.power(cfg["sampling_rate"] / 30, 0.25) * 64)
+                # cfg["windowsize"] = int(np.power(cfg["sampling_rate"] / 30, 0.25) * 64)
                 suggestion = int(np.power(cfg["sampling_rate"] / 30, 0.25) * 64)
                 # write again the config file to update the adjusted window size value
                 # config.write_config(cfg, os.path.join(model_path, "config.yaml"))
@@ -425,21 +423,22 @@ def transfer_train_model(
 
             optimizer = Adagrad(learning_rate=0.05)
             model.compile(loss=cfg["loss_function"], optimizer=optimizer)
-            
-            
+
             model.load_weights(model_pretrained_dict[noise_level][ensemble])
-            
+
             ######################################
-            
+
             # freeze convolutional layers
             for k in np.arange(6):
-              model.layers[k].trainable = False
+                model.layers[k].trainable = False
 
             # Re-compile (maybe not necessary?):
-            model.compile(loss=cfg["loss_function"], optimizer=Adagrad(learning_rate=0.02))
-            
+            model.compile(
+                loss=cfg["loss_function"], optimizer=Adagrad(learning_rate=0.02)
+            )
+
             ######################################
-            
+
             cfg["nr_of_epochs"] = np.minimum(
                 cfg["nr_of_epochs"], int(10 * np.floor(5e6 / len(X)))
             )
@@ -467,11 +466,14 @@ def transfer_train_model(
     print("Runtime: {:.0f} min".format((time.time() - start) / 60))
 
 
-
 def predict(
-    model_name, traces, model_folder="Pretrained_models", threshold=0, padding=np.nan, verbosity=1
+    model_name,
+    traces,
+    model_folder="Pretrained_models",
+    threshold=0,
+    padding=np.nan,
+    verbosity=1,
 ):
-
     """Use a specific trained neural network ('model_name') to predict spiking activity for calcium traces ('traces')
 
     In this function, a already trained model (generated by 'train_model' or downloaded) is loaded.
@@ -525,9 +527,8 @@ def predict(
 
     # reshape matrix of traces if only a single neuron's activity is provided as input to the inference
     if len(traces.shape) == 1:
-        traces = np.expand_dims(traces,0)
+        traces = np.expand_dims(traces, 0)
 
-  
     model_path = os.path.join(model_folder, model_name)
     cfg_file = os.path.join(model_path, "config.yaml")
 
@@ -553,7 +554,7 @@ def predict(
     # extract values from config file into variables
     verbose = cfg["verbose"]
     if verbosity == 0:
-      verbose = 0
+        verbose = 0
     training_data = cfg["training_datasets"]
     ensemble_size = cfg["ensemble_size"]
     batch_size = cfg["batch_size"]
@@ -622,21 +623,26 @@ def predict(
     Y_predict = np.zeros((XX.shape[0], XX.shape[1]))
 
     # Compute difference of noise levels between each neuron and each model; find the best fit
-    differences = np.array(trace_noise_levels)[:,None] - np.array(noise_levels_model)[None,:]
-    relative_differences = np.min(differences,axis=1)
+    differences = (
+        np.array(trace_noise_levels)[:, None] - np.array(noise_levels_model)[None, :]
+    )
+    relative_differences = np.min(differences, axis=1)
     if np.mean(relative_differences) > 2:
-        print("WARNING: The available models cannot match the experimentally obtained noise levels (difference: ", str(np.mean(relative_differences)),"). Please check that the computation of dF/F is performed correctly. Otherwise, please reach out and ask for pretrained models with higher noise level models (see: https://github.com/HelmchenLabSoftware/Cascade/issues/61).")
-    best_model_for_each_neuron = np.argmin(np.abs(differences),axis=1)
-    
+        print(
+            "WARNING: The available models cannot match the experimentally obtained noise levels (difference: ",
+            str(np.mean(relative_differences)),
+            "). Please check that the computation of dF/F is performed correctly. Otherwise, please reach out and ask for pretrained models with higher noise level models (see: https://github.com/HelmchenLabSoftware/Cascade/issues/61).",
+        )
+    best_model_for_each_neuron = np.argmin(np.abs(differences), axis=1)
+
     # Use for each noise level the matching model
     for i, model_noise in enumerate(noise_levels_model):
-
         if verbose:
             print("\nPredictions for noise level {}:".format(model_noise))
 
         # select neurons which have this noise level:
         neuron_idx = np.where(best_model_for_each_neuron == i)[0]
-        
+
         if len(neuron_idx) == 0:  # no neurons were selected
             if verbose:
                 print("\tNo neurons for this noise level")
@@ -729,7 +735,6 @@ def predict(
 
 
 def verify_config_dict(config_dictionary):
-
     """Perform some test to catch the most likely errors when creating config files"""
 
     # TODO: Implement
@@ -737,7 +742,6 @@ def verify_config_dict(config_dictionary):
 
 
 def create_model_folder(config_dictionary, model_folder="Pretrained_models"):
-
     """Creates a new folder in model_folder and saves config.yaml file there
 
     Parameters
@@ -780,7 +784,6 @@ def create_model_folder(config_dictionary, model_folder="Pretrained_models"):
 
 
 def get_model_paths(model_path):
-
     """Find all models in the model folder and return as dictionary
     ( Helper function called by predict() )
 

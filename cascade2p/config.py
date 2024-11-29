@@ -1,4 +1,3 @@
-
 import os
 from pip._internal import main as pip
 
@@ -81,16 +80,18 @@ def read_config(config_yaml_file):
     """Read given yaml file and return dictionary with entries"""
     # if this results in an error, install the package with: pip install ruamel.yaml
     try:
-        import ruamel.yaml as yaml   # install the package with: pip install ruamel.yaml
-        yaml = yaml.YAML(typ='rt')
+        import ruamel.yaml as yaml  # install the package with: pip install ruamel.yaml
+
+        yaml = yaml.YAML(typ="rt")
     except ImportError:
-        pip.main(['install', '--user', 'ruamel'])
-        import ruamel.yaml as yaml   # install the package with: pip install ruamel.yaml
-        yaml = yaml.YAML(typ='rt')
+        pip.main(["install", "--user", "ruamel"])
+        import ruamel.yaml as yaml  # install the package with: pip install ruamel.yaml
+
+        yaml = yaml.YAML(typ="rt")
 
     # TODO: add handling of file not found error
 
-    with open(config_yaml_file, 'r') as file:
+    with open(config_yaml_file, "r") as file:
         config_dict = yaml.load(file)
 
     return config_dict
@@ -101,12 +102,14 @@ def write_config(config_dict, save_file):
 
     # if this results in an error, install the package with: pip install ruamel.yaml
     try:
-        import ruamel.yaml as yaml   # install the package with: pip install ruamel.yaml
-        yaml = yaml.YAML(typ='rt')
+        import ruamel.yaml as yaml  # install the package with: pip install ruamel.yaml
+
+        yaml = yaml.YAML(typ="rt")
     except ImportError:
-        pip.main(['install', '--user', 'ruamel'])
-        import ruamel.yaml as yaml   # install the package with: pip install ruamel.yaml
-        yaml = yaml.YAML(typ='rt')
+        pip.main(["install", "--user", "ruamel"])
+        import ruamel.yaml as yaml  # install the package with: pip install ruamel.yaml
+
+        yaml = yaml.YAML(typ="rt")
 
     # TODO: some error handling in case of missing default values?
 
@@ -117,13 +120,13 @@ def write_config(config_dict, save_file):
     for key in config_dict:
         yml_dict[key] = config_dict[key]
 
-    file_existed = os.path.exists( save_file )
+    file_existed = os.path.exists(save_file)
 
     # save updated configs in save_file
-    with open(save_file, 'w') as file:
+    with open(save_file, "w") as file:
         yaml.dump(yml_dict, file)
 
     if not file_existed:
-        print('Created file', save_file)
+        print("Created file", save_file)
     else:
         pass  # file was updated, no need to notify user
