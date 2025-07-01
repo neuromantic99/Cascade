@@ -1,7 +1,7 @@
 ###
 ### Download links for available models
 ###
-### Last update: September 19th 2024
+### Last update: May 22th 2025
 
 Global_EXC_1Hz_smoothing500ms:
     Link: https://drive.switch.ch/index.php/s/ZAc2kNO0aqSO3ja/download
@@ -74,6 +74,15 @@ OGB_zf_pDp_7.5Hz_smoothing200ms:
     Info:
 OGB_zf_pDp_7.5Hz_smoothing200ms_causalkernel:
     Link: https://drive.switch.ch/index.php/s/t4secylUuZTrimj/download
+    Info:
+OGB_zf_pDp_7.5Hz_smoothing100ms:
+    Link: https://drive.switch.ch/index.php/s/ArIEXSEXEroraj8/download
+    Info:
+OGB_zf_pDp_7.5Hz_smoothing150ms:
+    Link: https://drive.switch.ch/index.php/s/T0qukks0v2nWzer/download
+    Info:
+OGB_zf_pDp_7.5Hz_smoothing66ms:
+    Link: https://drive.switch.ch/index.php/s/13woYK1FO3SWNJH/download
     Info:
 Global_EXC_10Hz_smoothing50ms:
     Link: https://drive.switch.ch/index.php/s/vU7bUlVmmcGQ4mM/download
@@ -371,4 +380,91 @@ GC8f_EXC_15Hz_smoothing50ms_high_noise:
     Info:
 GC8f_EXC_15Hz_smoothing100ms_high_noise:
     Link: https://drive.switch.ch/index.php/s/xnaZDlifTxhG9Hb/download
+    Info:
+GC8s_EXC_45Hz_smoothing20ms:
+    Link: https://drive.switch.ch/index.php/s/8tPgCDqFSsJTCx5/download
+    Info:
+GC8s_EXC_45Hz_smoothing50ms:
+    Link: https://drive.switch.ch/index.php/s/m7IKccnCbXJDeJf/download
+    Info:
+GC8s_EXC_45Hz_smoothing100ms:
+    Link: https://drive.switch.ch/index.php/s/gXcw24eUY5aRBqW/download
+    Info:
+GC8_EXC_100Hz_smoothing10ms:
+    Link: https://drive.switch.ch/index.php/s/xgjOWHJ8jKdCUph/download
+    Info:
+GC8f_EXC_100Hz_smoothing10ms:
+    Link: https://drive.switch.ch/index.php/s/s2I2ctYGeXgoGQr/download
+    Info:
+Interneurons_GC8+_7.5Hz_smoothing100ms_high_noise:
+    Link: https://drive.switch.ch/index.php/s/E7Epvzh4te2joDB/download
+    Info:
+Interneurons_GC8+_7.5Hz_smoothing200ms_high_noise:
+    Link: https://drive.switch.ch/index.php/s/Hefmyj3MUtTYYnH/download
+    Info:
+Interneurons_GC8+_30Hz_smoothing25ms_high_noise:
+    Link: https://drive.switch.ch/index.php/s/hwiBYtpLnG8T359/download
+    Info:
+Interneurons_GC8+_30Hz_smoothing50ms_high_noise:
+    Link: https://drive.switch.ch/index.php/s/NHnmSDi5EKp9YZ3/download
+    Info:
+Online_model_30Hz_integration_100ms_smoothing_25ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/4MUFDhmAkKWI6Rj/download
+    Info:
+Online_model_30Hz_integration_100ms_smoothing_25ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/gwPG0mwIYcS67V0/download
+    Info:
+Online_model_30Hz_integration_133ms_smoothing_25ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/It3jI4oHRfYuuQe/download
+    Info:
+Online_model_30Hz_integration_133ms_smoothing_25ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/qpShI7jnZAMV37S/download
+    Info:
+Online_model_30Hz_integration_166ms_smoothing_25ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/rngLdff6MAZ61HM/download
+    Info:
+Online_model_30Hz_integration_166ms_smoothing_25ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/GMDB4tfOuf4Hk12/download
+    Info:
+Online_model_30Hz_integration_200ms_smoothing_25ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/8irPxqJC48yqmOl/download
+    Info:
+Online_model_30Hz_integration_200ms_smoothing_25ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/1HaqSbvoM2Lse87/download
+    Info:
+Online_model_30Hz_integration_66ms_smoothing_25ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/5JVnZw5iqniIM3V/download
+    Info:
+Online_model_30Hz_integration_66ms_smoothing_25ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/mfdxsHOdPnJysDg/download
+    Info:
+Online_model_60Hz_integration_100ms_smoothing_12ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/NEUk6EsR7yIVyvm/download
+    Info:
+Online_model_60Hz_integration_100ms_smoothing_12ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/GbROEOXcVWmSWal/download
+    Info:
+Online_model_60Hz_integration_33ms_smoothing_12ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/KXbW5XPHMW8L3mm/download
+    Info:
+Online_model_60Hz_integration_33ms_smoothing_12ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/F4nNl2hNmFxGXld/download
+    Info:
+Online_model_60Hz_integration_50ms_smoothing_12ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/aRfQjCfxssNoT3A/download
+    Info:
+Online_model_60Hz_integration_50ms_smoothing_12ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/hK2rNQx1dHU7ePa/download
+    Info:
+Online_model_60Hz_integration_66ms_smoothing_12ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/f4GxohFl6VHaXI6/download
+    Info:
+Online_model_60Hz_integration_66ms_smoothing_12ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/d0Ho8DhzXnBH5iq/download
+    Info:
+Online_model_60Hz_integration_83ms_smoothing_12ms_GCaMP6:
+    Link: https://drive.switch.ch/index.php/s/oVTTA1PWy18nmeA/download
+    Info:
+Online_model_60Hz_integration_83ms_smoothing_12ms_GCaMP8:
+    Link: https://drive.switch.ch/index.php/s/q4U0kb5HAT47Qt7/download
     Info:
