@@ -709,9 +709,9 @@ def predict(
 
             Y_predict[neuron, ~activity_mask] = 0
 
-            Y_predict[
-                Y_predict < 0
-            ] = 0  # set possible negative values in dilated mask to 0
+            Y_predict[Y_predict < 0] = (
+                0  # set possible negative values in dilated mask to 0
+            )
 
     elif threshold == 0:
         # ignore warning because of nan's in Y_predict in comparison with value

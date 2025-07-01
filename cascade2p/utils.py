@@ -506,24 +506,26 @@ def preprocess_groundtruth_artificial_noise_balanced(
 
             dataset_sizes[dataset_index] = datapoint_counter
 
-            nbx_datapoints[
-                neuron_counter : neuron_counter + len(sub_traces_allX)
-            ] = datapoint_counter * np.ones(
-                len(sub_traces_allX),
+            nbx_datapoints[neuron_counter : neuron_counter + len(sub_traces_allX)] = (
+                datapoint_counter
+                * np.ones(
+                    len(sub_traces_allX),
+                )
             )
-            sub_traces_all[
-                neuron_counter : neuron_counter + len(sub_traces_allX)
-            ] = sub_traces_allX
+            sub_traces_all[neuron_counter : neuron_counter + len(sub_traces_allX)] = (
+                sub_traces_allX
+            )
             sub_traces_events_all[
                 neuron_counter : neuron_counter + len(sub_traces_allX)
             ] = sub_traces_events_allX
-            events_all[
-                neuron_counter : neuron_counter + len(sub_traces_allX)
-            ] = events_allX
-            dataset_indices[
-                neuron_counter : neuron_counter + len(sub_traces_allX)
-            ] = dataset_index * np.ones(
-                len(sub_traces_allX),
+            events_all[neuron_counter : neuron_counter + len(sub_traces_allX)] = (
+                events_allX
+            )
+            dataset_indices[neuron_counter : neuron_counter + len(sub_traces_allX)] = (
+                dataset_index
+                * np.ones(
+                    len(sub_traces_allX),
+                )
             )
 
             neuron_counter += len(sub_traces_allX)
